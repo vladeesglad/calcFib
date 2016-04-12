@@ -16,8 +16,6 @@ public class calcFibs {
         string soongone = '';
         string mirrorsoongone = '';
         string mirrornolongernext = '';
-        
-        integer carry = 0;
 
         integer x;
         integer y;
@@ -26,7 +24,9 @@ public class calcFibs {
         integer thiscalc = 0;
         
         for (x=0;x<interations;x++) {
-
+            
+            integer carry = 0;            
+            
             if (x == 0) {
                 mirrorsoongone = string.valueof(a).reverse();
                 mirrornolongernext = string.valueof(b).reverse();
@@ -46,9 +46,7 @@ public class calcFibs {
                 
                 if (x == 1) {
                     mirrorsoongone = mirrornolongernext;
-                    system.debug(mirrorsoongone);
                     mirrornolongernext = next.reverse();
-                    system.debug(mirrornolongernext);
                 }
                 
                 else {
