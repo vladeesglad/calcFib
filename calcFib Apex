@@ -1,0 +1,106 @@
+public class calcFibs {
+    
+    //	USERS NOTE: ITERATIONS EXCLUDES THE STARTING PAIR AS PART OF THE STRING ELEMENTS COUNT
+    
+    public static string FibonacciCSV (integer a, integer b , integer interations) {
+        
+        // CONDITIONS: EITHER INT A OR INT B MUST BE GREATER THAN ZERO
+        // && NEITHER CAN BE LESS THAN ZERO
+        // ITERATIONS MUST BE GREATER THAN ZERO
+        
+
+        string returnFibs = string.valueof(a) + ',' + string.valueof(b) + ',';
+        
+        string next = '';
+        string nolongernext = '';
+        string soongone = '';
+        string mirrorsoongone = '';
+        string mirrornolongernext = '';
+        
+        integer carry = 0;
+
+        integer x;
+        integer y;
+        integer longstring;
+
+        integer thiscalc = 0;
+        
+        for (x=0;x<interations;x++) {
+
+            if (x == 0) {
+                mirrorsoongone = string.valueof(a).reverse();
+                mirrornolongernext = string.valueof(b).reverse();
+                next = string.valueof(a + b);
+                
+                //	NOTE POSSIBILITY OF FAILS HERE IF THE USER ENTERS TWO INITIAL VALUES WHICH, WHEN SUMMED, 
+                //	EXCEED ALLOWABLE INTEGER LENGTH
+                //	STRATEGY: PUT SUM IN TRY/CATCH BLOCK?
+                
+                returnfibs += next + ',';
+                system.debug(returnfibs);       
+                continue;
+                
+            }
+            
+            else {
+                
+                if (x == 1) {
+                    mirrorsoongone = mirrornolongernext;
+                    system.debug(mirrorsoongone);
+                    mirrornolongernext = next.reverse();
+                    system.debug(mirrornolongernext);
+                }
+                
+                else {
+                    mirrorsoongone = mirrornolongernext;
+                    mirrornolongernext = next;   
+                }
+
+                next = '';
+                longstring = mirrornolongernext.length();
+                
+                for (y=0;y<longstring;y++) {
+                    
+                    if (mirrorsoongone.length() > y) {                        
+                        thiscalc = carry + integer.valueof(mirrornolongernext.mid(y,1)) + integer.valueof(mirrorsoongone.mid(y,1));
+                    	system.debug(carry + ' + ' + integer.valueof(mirrorsoongone.mid(y,1)) + ' + '+
+                            integer.valueof(mirrornolongernext.mid(y,1)) + ' = ' + thiscalc);
+                    }
+                    
+                    else {
+                        thiscalc = carry + integer.valueof(mirrornolongernext.mid(y,1));
+                    }
+                        
+                    carry = 0;
+                    
+                    if (thiscalc > 9) {
+                        carry = 1;
+                        thiscalc = thiscalc - 10;
+                    }
+                    
+                    system.debug(mirrorsoongone + ' : ' + mirrornolongernext + ' : ' + thiscalc);
+                    
+                    if (thiscalc != 0) {
+                        next += string.valueof(thiscalc);
+                    }
+                    
+                    else {
+                        next += '0';
+                    }
+                    
+                    if (carry == 1 && longstring-y == 1) {
+                        next += '1';
+                    }   
+                } 
+            }
+            
+            returnfibs += next.reverse() + ',';
+            system.debug(returnfibs);   
+        }
+        
+        returnfibs.removeEnd(',');
+
+        return returnFibs;        
+    }
+
+}
