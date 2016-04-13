@@ -101,4 +101,25 @@ public class calcFibs {
         return returnFibs;        
     }
 
+
+    
+    public static string findFirstDupe (string userinput){
+        string firstDupe;
+        
+        integer matches;
+        integer x;
+        
+        
+        for (x=0;x<userinput.length();x++) {
+            if (userinput.countmatches(userinput.mid(x,1)) > 1) {
+                firstdupe = userinput.mid(x,1);
+                break;
+            }
+        }
+        
+        return firstDupe;
+    }
+
+
+
 }
