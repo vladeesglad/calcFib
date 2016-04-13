@@ -1,5 +1,5 @@
 public class calcFibs {
-    
+    //	@ gwoods 4/12/16
     //	USERS NOTE: ITERATIONS EXCLUDES THE STARTING PAIR AS PART OF THE STRING ELEMENTS COUNT
     
     public static string FibonacciCSV (integer a, integer b , integer interations) {
